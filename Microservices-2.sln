@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService", "src\AuctionService\AuctionService.csproj", "{BFACCA66-0ECF-4F5D-AFAF-9D575BEA8430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService", "src\AuctionService\AuctionService.csproj", "{BFACCA66-0ECF-4F5D-AFAF-9D575BEA8430}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{337725C2-97A6-4DF1-8EBD-C5C2438DAE55}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D6DA912C-7645-4FEF-9AC5-C82242014D75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchServices", "src\SearchServices\SearchServices.csproj", "{00016BE7-85EA-405B-B897-49F2508BD592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{D6DA912C-7645-4FEF-9AC5-C82242014D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6DA912C-7645-4FEF-9AC5-C82242014D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6DA912C-7645-4FEF-9AC5-C82242014D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00016BE7-85EA-405B-B897-49F2508BD592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00016BE7-85EA-405B-B897-49F2508BD592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00016BE7-85EA-405B-B897-49F2508BD592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00016BE7-85EA-405B-B897-49F2508BD592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BFACCA66-0ECF-4F5D-AFAF-9D575BEA8430} = {337725C2-97A6-4DF1-8EBD-C5C2438DAE55}
+		{00016BE7-85EA-405B-B897-49F2508BD592} = {337725C2-97A6-4DF1-8EBD-C5C2438DAE55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B06AFD5F-F2FA-4A60-A54C-929888129B84}

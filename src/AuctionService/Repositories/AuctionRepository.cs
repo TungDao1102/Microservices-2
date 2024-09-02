@@ -34,9 +34,9 @@ namespace AuctionService.Repositories
                     .ThenBy(x => x.Item!.Make)
                     .AsQueryable();
 
-            if (!string.IsNullOrEmpty(date))
+            if (!string.IsNullOrEmpty(date) && DateTime.TryParse(date, out DateTime time))
             {
-                query = query.Where(x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
+                query = query.Where(x => x.UpdatedAt.CompareTo(time.ToUniversalTime()) > 0);
             }
 
             return await query.ProjectToType<AuctionDto>().ToListAsync();
