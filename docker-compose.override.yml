@@ -24,3 +24,15 @@ services:
    - "27017:27017"
    volumes:
     - mongo_db:/data/db
+
+  rabbitmq:
+    container_name: rabbitmq
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+ 
