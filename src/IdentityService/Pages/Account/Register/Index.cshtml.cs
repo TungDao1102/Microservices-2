@@ -43,10 +43,10 @@ namespace IdentityService.Pages.Register
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddClaimsAsync(user, new Claim[]
-                    {
+                    await userManager.AddClaimsAsync(user,
+                    [
                         new Claim(JwtClaimTypes.Name, Input.FullName)
-                    });
+                    ]);
 
                     RegisterSuccess = true;
                 }
