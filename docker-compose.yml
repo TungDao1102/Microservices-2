@@ -1,15 +1,42 @@
 version: '3.4'
 
 services:
-   postgres:
+  postgres:
     image: postgres
 
-   mongodb:
+  mongodb:
     image: mongo
 
-   rabbitmq:
+  rabbitmq:
     image: rabbitmq:management
+
+  auctionservice:
+    image: ${DOCKER_REGISTRY-}auctionservice
+    build:
+      context: .
+      dockerfile: src/AuctionService/Dockerfile
+
+  searchservices:
+    image: ${DOCKER_REGISTRY-}searchservices
+    build:
+      context: .
+      dockerfile: src/SearchServices/Dockerfile
+
+  gatewayservice:
+    image: ${DOCKER_REGISTRY-}gatewayservice
+    build:
+      context: .
+      dockerfile: src/GatewayService/Dockerfile
+
+  identityservice:
+    image: ${DOCKER_REGISTRY-}identityservice
+    build:
+      context: .
+      dockerfile: src/IdentityService/Dockerfile
 
 volumes:
   postgres_db:
   mongo_db:  
+
+
+

@@ -4,7 +4,9 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "auctionservice": "StartDebugging"
+        "auctionservice": "StartDebugging",
+        "gatewayservice": "StartDebugging",
+        "identityservice": "StartDebugging"
       }
     }
   }

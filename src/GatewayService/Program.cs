@@ -42,4 +42,6 @@ app.MapReverseProxy();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapGet("/", () => "Hello World!");
+
 app.Run();

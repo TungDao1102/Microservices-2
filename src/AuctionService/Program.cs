@@ -26,6 +26,12 @@ builder.Services.AddMassTransit(options =>
     options.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
     options.UsingRabbitMq((context, config) =>
     {
+        config.Host(builder.Configuration["RabbitMq:Host"], "/", h =>
+        {
+            h.Username(builder.Configuration.GetValue("RabbitMQ:Username", "guest")!);
+            h.Password(builder.Configuration.GetValue("RabbitMQ:Password", "guest")!);
+        });
+
         config.ConfigureEndpoints(context);
     });
 });
@@ -62,5 +68,6 @@ app.UseAuthorization();
 app.InitDb();
 
 app.MapControllers();
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
