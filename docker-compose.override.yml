@@ -80,6 +80,8 @@ services:
       - VIRTUAL_HOST=api.carsties.local
     ports:
       - "6001:8080"
+    depends_on:
+      - searchservices
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
 
