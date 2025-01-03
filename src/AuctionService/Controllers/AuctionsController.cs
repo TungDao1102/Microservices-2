@@ -66,7 +66,7 @@ namespace AuctionService.Controllers
             auction.Item.Mileage = updateAuctionDto.Mileage ?? auction.Item.Mileage;
             auction.Item.Year = updateAuctionDto.Year ?? auction.Item.Year;
 
-            //   await publishEndpoint.Publish(mapper.Map<AuctionUpdated>(auction));
+            await publishEndpoint.Publish(auction.Adapt<AuctionUpdated>());
 
             var result = await repo.SaveChangesAsync();
 
