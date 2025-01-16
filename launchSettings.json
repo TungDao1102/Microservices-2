@@ -6,7 +6,8 @@
       "serviceActions": {
         "auctionservice": "StartDebugging",
         "gatewayservice": "StartDebugging",
-        "identityservice": "StartDebugging"
+        "identityservice": "StartDebugging",
+        "biddingservice": "StartDebugging"
       }
     }
   }

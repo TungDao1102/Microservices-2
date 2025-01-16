@@ -1,4 +1,5 @@
 using BiddingService.Consumers;
+using BiddingService.Services;
 using MassTransit;
 using MongoDB.Driver;
 using MongoDB.Entities;
@@ -20,6 +21,7 @@ builder.Services.AddMassTransit(options =>
         config.ConfigureEndpoints(context);
     });
 });
+builder.Services.AddScoped<GrpcAuctionClient>();
 
 var app = builder.Build();
 

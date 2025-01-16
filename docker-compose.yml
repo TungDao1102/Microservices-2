@@ -34,9 +34,16 @@ services:
       context: .
       dockerfile: src/IdentityService/Dockerfile
 
+  biddingservice:
+    image: ${DOCKER_REGISTRY-}biddingservice
+    build:
+      context: .
+      dockerfile: src/BiddingService/Dockerfile
+
 volumes:
   postgres_db:
   mongo_db:  
+
 
 
 

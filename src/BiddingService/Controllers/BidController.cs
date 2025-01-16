@@ -1,5 +1,6 @@
 ﻿using BiddingService.DTOs;
 using BiddingService.Models;
+using BiddingService.Services;
 using Contracts;
 using Mapster;
 using MassTransit;
@@ -11,7 +12,7 @@ namespace BiddingService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BidController(IPublishEndpoint publishEndpoint) : ControllerBase
+    public class BidController(IPublishEndpoint publishEndpoint, GrpcAuctionClient grpcClient) : ControllerBase
     {
         [Authorize]
         [HttpPost]
@@ -20,7 +21,9 @@ namespace BiddingService.Controllers
             var auction = await DB.Find<Auction>().OneAsync(auctionId);
             if (auction == null)
             {
-                return NotFound();
+                auction = grpcClient.GetAuction(auctionId);
+
+                if (auction == null) return BadRequest("Cannot accept bids on this auction at this time");
             }
             if (auction.Finished)
             {

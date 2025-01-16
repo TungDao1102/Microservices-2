@@ -100,3 +100,26 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  biddingservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__BidDbConnection=mongodb://root:mongopw@mongodb
+      - IdentityServiceUrl=http://identity-svc
+      - GrpcAuction=http://auction-svc:7777
+      - Kestrel_Endpoints___Grpc__Protocols=Http2
+      - Kestrel_Endpoints___Grpc___Url=http://+:7777
+      - Kestrel Endpoints___Grpc__Protocols=Http2
+      - Kestrel _Endpoints___Grpc____Url=Http2://
+    ports:
+      - "7003:8080"
+      - "7777:8081"
+    depends_on:
+      - mongodb
+      - rabbitmq
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

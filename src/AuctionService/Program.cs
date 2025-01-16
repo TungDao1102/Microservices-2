@@ -1,5 +1,6 @@
 using AuctionService.Consumers;
 using AuctionService.Data;
+using AuctionService.Services;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddGrpc();
 builder.Services.AddDbContext<AuctionDbContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -68,6 +69,7 @@ app.UseAuthorization();
 app.InitDb();
 
 app.MapControllers();
+app.MapGrpcService<GrpcAuctionService>();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
