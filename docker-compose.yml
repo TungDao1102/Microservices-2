@@ -46,6 +46,9 @@ services:
       context: .
       dockerfile: src/NotificationService/Dockerfile
 
+  nginx-proxy:
+   image: nginxproxy/nginx-proxy
+
 volumes:
   postgres_db:
   mongo_db:  
