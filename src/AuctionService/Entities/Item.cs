@@ -9,5 +9,8 @@
         public required string Color { get; set; }
         public int Mileage { get; set; }
         public required string ImageUrl { get; set; }
+
+        public Auction Auction { get; set; } = default!;
+        public Guid AuctionId { get; set; }
     }
 }
