@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auction-svc-config
+data:
+  ASPNETCORE_ENVIRONMENT: "Development"
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_HTTPS_PORTS: "8081"
+  ConnectionStrings__DefaultConnection: "Server=postgres; User Id=postgres;Password=postgrespw; Database=auctions;"
+  IdentityServiceUrl: http://identity-clusterip
+  RabbitMQ__Host: rabbit-clusterip
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: search-svc-config
+data:
+  RabbitMQ__Host: rabbit-clusterip
+  AuctionServiceUrl: http://auction-clusterip
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_HTTPS_PORTS: "8081"
+  ConnectionStrings__MongoDbConnection: mongodb://root:mongopw@mongodb
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bid-svc-config
+data:
+  RabbitMQ__Host: rabbit-clusterip
+  IdentityServiceUrl: http://identity-clusterip
+  GrpcAuction: http://auction-clusterip:7777
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_HTTPS_PORTS: "8081"
+  ConnectionStrings__BidDbConnection: mongodb://root:mongopw@mongodb
+  Kestrel_Endpoints___Grpc__Protocols: Http2
+  Kestrel_Endpoints___Grpc___Url: http://+:7777
+  Kestrel Endpoints___Grpc__Protocols: Http2
+  Kestrel _Endpoints___Grpc____Url: Http2://
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notify-svc-config
+data:
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_HTTPS_PORTS: "8081"
+  RabbitMQ__Host: rabbit-clusterip
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-svc-config
+data:
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_HTTPS_PORTS: "8081"
+  ClientApp: https://app.carsties.autos
+  IdentityServiceUrl: http://identity-clusterip
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: identity-svc-config
+data:
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_HTTPS_PORTS: "8081"
+  IssuerUri: https://id.carsties.autos
+  ClientApp: https://app.carsties.autos
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-svc-config
+data:
+  AUTH_URL: https://app.carsties.autos
+  AUTH_URL_INTERNAL: http://webapp-clusterip:3000
+  API_URL: http://gateway-clusterip/
+  ID_URL: https://id.carsties.autos
+  ID_URL_INTERNAL: http://identity-clusterip
+  NOTIFY_URL: https://api.carsties.autos/notifications
